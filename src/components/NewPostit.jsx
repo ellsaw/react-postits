@@ -1,8 +1,9 @@
-import { useState } from "react"
+import { useState} from "react"
 
-export default function NewPostIt({visible}){
+export default function NewPostIt({visible, setVisible}){
 
-    if(!visible) return;
+
+    if(!visible) return null;
 
     const [postItColor, setColor] = useState("yellow")
 
@@ -18,6 +19,10 @@ export default function NewPostIt({visible}){
         "green"
     ]
 
+    function close(){
+        setVisible(false);
+    }
+
 
     const handleForm = {
         submit(event){
@@ -25,7 +30,7 @@ export default function NewPostIt({visible}){
 
             console.log(form);
 
-            return;
+            setVisible(false)
         },
         change(event, type){
             setForm({...form, [type]: event.target.value})
@@ -35,8 +40,7 @@ export default function NewPostIt({visible}){
     }
     return(
         <>
-            <div className='add-postit-overlay'>
-                <form style={{backgroundColor: `var(--${postItColor})`}} onSubmit={(event) => handleForm.submit(event)}>
+                <form className="add-postit-form" style={{backgroundColor: `var(--${postItColor})`}} onSubmit={(event) => handleForm.submit(event)}>
                     <textarea name="postItContent" id="postItContent" onChange={(event) => handleForm.change(event, "content")}></textarea>
                     <div className="form-controls">
                         <fieldset className="radio-container">
@@ -47,8 +51,7 @@ export default function NewPostIt({visible}){
                         <button type="submit">Place Note</button>
                     </div>
                 </form>
-            </div>
+            <div className="add-postit-overlay" onClick={close}></div>
         </>
-
     )
 }

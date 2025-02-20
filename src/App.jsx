@@ -6,9 +6,10 @@ import { useState } from "react"
 
 function App() {
   const [showForm, setShowForm] = useState(false)
+
   return (
     <>
-    <NewPostIt visible={showForm}/>
+    <NewPostIt visible={showForm} setVisible={setShowForm}/>
       <header>
         <h1>Post It</h1>
         <button onClick={() => {setShowForm(true)}}>
