@@ -22,7 +22,7 @@ function App() {
         </button>
       </header>
       <main>
-        <Board/>
+        <Board reRenderOn={showForm}/>
       </main>
     </>
   )

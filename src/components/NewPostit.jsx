@@ -1,7 +1,7 @@
-import { useEffect, useState} from "react"
+import {useState} from "react"
+
 
 export default function NewPostIt({visible, setVisible}){
-
 
     if(!visible) return null;
 
@@ -11,8 +11,8 @@ export default function NewPostIt({visible, setVisible}){
         id: null,
         content: "",
         color: "yellow",
-        x: 0,
-        y: 0
+        x: "0px",
+        y: "0px"
     })
 
     const colors = [
@@ -33,9 +33,15 @@ export default function NewPostIt({visible, setVisible}){
 
             const prevNotes = JSON.parse(localStorage.getItem('notes'));
 
-            const formWithId = ({...form, id: (prevNotes.length + 1)})
+            const formWithId = () => {
+                if(prevNotes.length === 0){
+                    return ({...form, id: (prevNotes.length + 1)})
+                }else{
+                    return ({...form, id: (prevNotes[prevNotes.length - 1].id + 1)})
+                }
+            }
 
-            const newNotes = [...prevNotes, formWithId];
+            const newNotes = [...prevNotes, formWithId()];
 
             localStorage.setItem('notes', JSON.stringify(newNotes));
 

@@ -6,7 +6,6 @@
   --pink: rgb(238, 158, 245);
   --blue: rgb(121, 153, 241);
   --green: rgb(121, 241, 141);
-  --postItSize: 10em;
 }
 
 
@@ -50,10 +49,12 @@ h1{
 .postit{
   padding: 0.5em;
   position: absolute;
-  height: var(--postItSize);
-  width: var(--postItSize);
+  aspect-ratio: 1/1;
+  max-width: 20em;
+  word-wrap: break-word;
   box-shadow: 2px 5px 10px var(--black);
   cursor:move ;
+  user-select: none;
 }
 
 .add-postit-overlay{
