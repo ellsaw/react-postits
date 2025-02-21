@@ -1,1 +1,1 @@
-# To do list for learing the React Library + Vite Framework
+# Post Its app for learing the React Library + Vite Framework
