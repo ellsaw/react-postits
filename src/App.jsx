@@ -2,10 +2,15 @@ import Board from "./components/Board"
 import NewPostIt from "./components/newPostit"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPlus } from '@fortawesome/free-solid-svg-icons'
-import { useState } from "react"
+import { useEffect, useState } from "react"
 
 function App() {
   const [showForm, setShowForm] = useState(false)
+
+  useEffect(() => {
+    const prev = localStorage.getItem('notes')
+    if(!prev) localStorage.setItem('notes', JSON.stringify([]));
+  }, [])
 
   return (
     <>

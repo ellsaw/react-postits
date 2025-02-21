@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,100..900;1,100..900&display=swap');
+
 :root{
   --black: rgb(20, 20, 20);
   --yellow: rgb(239, 241, 121);
@@ -7,11 +9,13 @@
   --postItSize: 10em;
 }
 
+
 *{
   margin: 0;
   padding: 0;
   box-sizing: border-box;
   font-size: 1em;
+  font-family: "Archivo", serif;
 }
 
 button{
@@ -22,7 +26,6 @@ button{
 
 body{
   background-color: rgb(202, 134, 79);
-  font-family: sans-serif;
   color: var(--black);
   font-size: 0.75rem;
 }
@@ -50,7 +53,6 @@ h1{
   height: var(--postItSize);
   width: var(--postItSize);
   box-shadow: 2px 5px 10px var(--black);
-  font-family: cursive;
   cursor:move ;
 }
 
@@ -85,7 +87,6 @@ h1{
   aspect-ratio: 1/1;
   width: 100%;
   font-size: 1.33em;
-  font-family: cursive;
 }
 
 .form-controls{

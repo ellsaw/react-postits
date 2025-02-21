@@ -1,4 +1,4 @@
-import { useState} from "react"
+import { useEffect, useState} from "react"
 
 export default function NewPostIt({visible, setVisible}){
 
@@ -8,8 +8,11 @@ export default function NewPostIt({visible, setVisible}){
     const [postItColor, setColor] = useState("yellow")
 
     const [form, setForm] = useState({
+        id: null,
         content: "",
-        color: "yellow"
+        color: "yellow",
+        x: 0,
+        y: 0
     })
 
     const colors = [
@@ -28,7 +31,13 @@ export default function NewPostIt({visible, setVisible}){
         submit(event){
             event.preventDefault();
 
-            console.log(form);
+            const prevNotes = JSON.parse(localStorage.getItem('notes'));
+
+            const formWithId = ({...form, id: (prevNotes.length + 1)})
+
+            const newNotes = [...prevNotes, formWithId];
+
+            localStorage.setItem('notes', JSON.stringify(newNotes));
 
             setVisible(false)
         },
