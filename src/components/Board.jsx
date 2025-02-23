@@ -15,6 +15,8 @@ export default function Board({ reRenderOn }) {
   function mouseHandler(postItEvent, id) {
     const targetElement = postItEvent.target.closest(".postit");
 
+    const headerHeight = document.querySelector('header').clientHeight;
+
     const prevCoord = {
       x: parseInt(targetElement.style.left),
       y: parseInt(targetElement.style.top),
@@ -33,12 +35,16 @@ export default function Board({ reRenderOn }) {
 
       if (prevCoord.x + mouse.x < 0) {
         targetElement.style.left = "0px";
+      } else if ((prevCoord.x + mouse.x) >= (window.innerWidth - targetElement.clientWidth)){
+        targetElement.style.left = `${window.innerWidth - targetElement.clientWidth}px`;
       } else {
         targetElement.style.left = `${prevCoord.x + mouse.x}px`;
       }
-
+      
       if (prevCoord.y + mouse.y < 0) {
         targetElement.style.top = "0px";
+      }else if ((prevCoord.y + mouse.y) >= ((window.innerHeight - headerHeight) - targetElement.clientHeight)){
+        targetElement.style.top = `${(window.innerHeight - headerHeight) - targetElement.clientHeight}px`;
       } else {
         targetElement.style.top = `${prevCoord.y + mouse.y}px`;
       }
