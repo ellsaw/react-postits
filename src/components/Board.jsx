@@ -72,6 +72,15 @@ export default function Board({ reRenderOn }) {
     window.addEventListener("mouseup", upHandler);
   }
 
+
+  function deleteNote(id){
+    if(!confirm("Are you sure you want to delete this note?\nThis cannot be undone!")){
+        return;
+    }
+
+    setNotes(notes.filter(note => note.id !== id))
+  }
+
   return (
     <div className="board">
       {notes &&
@@ -83,6 +92,7 @@ export default function Board({ reRenderOn }) {
           coordX={note.x}
           coordY={note.y}
           mouseDown={(event) => mouseHandler(event, note.id)}
+          deleteButtonClick={() => deleteNote(note.id)}
         />
       ))}
     </div>

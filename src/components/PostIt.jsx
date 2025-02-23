@@ -1,4 +1,7 @@
-export default function PostIt({ content, noteColor, coordX, coordY, mouseDown }) {
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faXmark } from '@fortawesome/free-solid-svg-icons'
+
+export default function PostIt({ content, noteColor, coordX, coordY, mouseDown, deleteButtonClick }) {
   return (
     <>
       <div
@@ -10,6 +13,9 @@ export default function PostIt({ content, noteColor, coordX, coordY, mouseDown }
         }}
         onMouseDown={mouseDown}
       >
+        <button onClick={deleteButtonClick}>
+          <FontAwesomeIcon icon={faXmark} />
+        </button>
         <p>{content}</p>
       </div>
     </>
