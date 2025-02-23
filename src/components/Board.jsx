@@ -9,13 +9,15 @@ export default function Board({ reRenderOn }) {
   }, [reRenderOn]);
 
   useEffect(() => {
-    localStorage.setItem("notes", JSON.stringify(notes));
+    if(notes) localStorage.setItem("notes", JSON.stringify(notes));
   }, [notes]);
 
   function mouseHandler(postItEvent, id) {
+    const targetElement = postItEvent.target.closest(".postit");
+
     const prevCoord = {
-      x: parseInt(postItEvent.target.style.left),
-      y: parseInt(postItEvent.target.style.top),
+      x: parseInt(targetElement.style.left),
+      y: parseInt(targetElement.style.top),
     };
 
     const initialMouse = {
@@ -30,15 +32,15 @@ export default function Board({ reRenderOn }) {
       };
 
       if (prevCoord.x + mouse.x < 0) {
-        postItEvent.target.style.left = "0px";
+        targetElement.style.left = "0px";
       } else {
-        postItEvent.target.style.left = `${prevCoord.x + mouse.x}px`;
+        targetElement.style.left = `${prevCoord.x + mouse.x}px`;
       }
 
       if (prevCoord.y + mouse.y < 0) {
-        postItEvent.target.style.top = "0px";
+        targetElement.style.top = "0px";
       } else {
-        postItEvent.target.style.top = `${prevCoord.y + mouse.y}px`;
+        targetElement.style.top = `${prevCoord.y + mouse.y}px`;
       }
     };
 
@@ -51,8 +53,8 @@ export default function Board({ reRenderOn }) {
           note.id === id
             ? {
                 ...note,
-                x: postItEvent.target.style.left,
-                y: postItEvent.target.style.top,
+                x: targetElement.style.left,
+                y: targetElement.style.top,
               }
             : note
         )
@@ -66,7 +68,8 @@ export default function Board({ reRenderOn }) {
 
   return (
     <div className="board">
-      {notes.map((note) => (
+      {notes &&
+      notes.map((note) => (
         <PostIt
           key={note.id}
           content={note.content}
