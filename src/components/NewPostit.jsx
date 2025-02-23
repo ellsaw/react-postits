@@ -23,7 +23,7 @@ export default function NewPostIt({visible, setVisible}){
     ]
 
     function close(){
-        setVisible(false);
+        if(confirm("Are you sure you want to discard your note?")) setVisible(false);
     }
 
 
