@@ -83,18 +83,21 @@ export default function Board({ reRenderOn }) {
 
   return (
     <div className="board">
-      {notes &&
-      notes.map((note) => (
-        <PostIt
-          key={note.id}
-          content={note.content}
-          noteColor={note.color}
-          coordX={note.x}
-          coordY={note.y}
-          mouseDown={(event) => mouseHandler(event, note.id)}
-          deleteButtonClick={() => deleteNote(note.id)}
-        />
-      ))}
+      {notes && notes.length > 0 ? (
+              notes.map((note) => (
+                <PostIt
+                  key={note.id}
+                  content={note.content}
+                  noteColor={note.color}
+                  coordX={note.x}
+                  coordY={note.y}
+                  mouseDown={(event) => mouseHandler(event, note.id)}
+                  deleteButtonClick={() => deleteNote(note.id)}
+                />
+              ))
+      ) : (
+        <p><span>Your board looks empty...</span><span>Press the + in the top right corner to add some notes!</span></p>
+      )}
     </div>
   );
 }
