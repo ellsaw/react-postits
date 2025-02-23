@@ -1,6 +1,3 @@
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faXmark } from '@fortawesome/free-solid-svg-icons'
-
 export default function PostIt({ content, noteColor, coordX, coordY, mouseDown, deleteButtonClick }) {
   return (
     <>
@@ -13,8 +10,8 @@ export default function PostIt({ content, noteColor, coordX, coordY, mouseDown, 
         }}
         onMouseDown={mouseDown}
       >
-        <button onClick={deleteButtonClick}>
-          <FontAwesomeIcon icon={faXmark} />
+        <button onClick={deleteButtonClick} aria-label="Delete note">
+          ×
         </button>
         <p>{content}</p>
       </div>

@@ -1,7 +1,5 @@
 import Board from "./components/Board"
 import NewPostIt from "./components/newPostit"
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faPlus } from '@fortawesome/free-solid-svg-icons'
 import { useEffect, useState } from "react"
 
 function App() {
@@ -17,8 +15,8 @@ function App() {
     <NewPostIt visible={showForm} setVisible={setShowForm}/>
       <header>
         <h1>Post It</h1>
-        <button onClick={() => {setShowForm(true)}}>
-          <FontAwesomeIcon icon={faPlus} size='2x'/>
+        <button onClick={() => {setShowForm(true)}} aria-label="New note">
+          +
         </button>
       </header>
       <main>
